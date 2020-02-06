@@ -1,8 +1,16 @@
-
-
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgModule } from '@angular/core';
 
 import { listeMatricules } from '../mock/matricules.mock';
+
+import { Observable } from 'rxjs';
+
+import { Collegue } from '../models/Collegue';
+
+import { DataService } from '../services/data.service';
+
+import { CommonModule } from '@angular/common';
+
+
 
 @Component({
 
@@ -14,27 +22,42 @@ import { listeMatricules } from '../mock/matricules.mock';
 
 })
 
+
+
 export class RechercheCollegueParNomComponent implements OnInit {
 
-  @Input() matricules = listeMatricules;
+  listeMatricules: Observable<string[]>;
 
   afficherMatricules = false;
 
+  col: Observable<Collegue[]>;
 
-
-  constructor() { }
-
-
-
-
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
 
   }
 
   affichageMatricules() {
+  }
+
+  rechercherCollegueParNom(nom: string) {
+
+    this.listeMatricules = this.dataService.listerMatriculeParNom(nom);
 
     this.afficherMatricules = true;
+
+  }
+
+  recupererCollegue(matricule: string) {
+
+    this.dataService.recupererCollegueCourant(matricule).subscribe(
+
+      () => {},
+
+      error => console.log(error)
+
+    );
 
   }
 

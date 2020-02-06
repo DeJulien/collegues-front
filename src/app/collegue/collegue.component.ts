@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Collegue } from '../models/Collegue';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-collegue',
@@ -8,10 +9,23 @@ import { Collegue } from '../models/Collegue';
 })
 export class CollegueComponent implements OnInit {
   @Input() col: Collegue;
-  constructor() { }
+  constructor(private dataService: DataService) { }
   modifier = true;
   ngOnInit() {
+    this.dataService.subjectDetailCollegue.subscribe( collegueDetail => this.col = collegueDetail);
   }
+  emailChange(valeurSaisie: string) {
+
+    this.col.email = valeurSaisie;
+
+  }
+
+  photoUrlChange(valeurSaisie: string) {
+
+    this.col.photoUrl = valeurSaisie;
+
+  }
+
   ajouterCollegue() {
 
     console.log('Création d\'un nouveau collègue');
@@ -20,6 +34,7 @@ export class CollegueComponent implements OnInit {
 
   modifierCollegue(col: Collegue) {
     this.modifier = false;
+
     console.log(`modification du collègue ${col.nom}`);
 
   }
