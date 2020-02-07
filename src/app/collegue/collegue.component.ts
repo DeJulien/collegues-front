@@ -1,93 +1,46 @@
 import { Component, OnInit, Input } from '@angular/core';
-
 import { Collegue } from '../models/Collegue';
-
-import { DataService } from '../services/data.service';
-
-
-
-
-
 
 
 @Component({
-
   selector: 'app-collegue',
-
   templateUrl: './collegue.component.html',
-
   styleUrls: ['./collegue.component.css']
-
 })
+
 
 export class CollegueComponent implements OnInit {
 
-  col: Collegue;
+  @Input() col: Collegue;
 
-  modifier = true;
+  modeEdition = false;
+  emailSaisie: string;
+  photoSaisie: string;
 
-  creer = true;
+  constructor( ) { }
 
+  modifierCollegue() {
 
-
-  collegueACreer: Collegue = new Collegue();
-
-  collegueAModifier: Collegue = new Collegue();
-
-  constructor(private dataService: DataService) { }
-
-
-
-  ngOnInit() {
-
-    this.dataService.subjectDetailCollegue.subscribe( collegueDetail => this.col = collegueDetail);
-
-  }
-
-
-
-  ajouterCollegue() {
-
-    this.creer = false;
-
-
-
+    this.modeEdition = true;
+    console.log('Modification du collègue');
   }
 
   creerCollegue() {
-
-    this.dataService.creerCollegue(this.collegueACreer).subscribe(() => {} , error => console.log(error));
-
-    this.creer = true;
-
-    this.modifier = true;
-
+    console.log('Création d’un nouveau collègue');
+  }
+  emailChange(valeurSaisie: string) {
+    this.emailSaisie = valeurSaisie;
+  }
+  photoChange(adresseSaisie: string){
+    this.photoSaisie = adresseSaisie;
   }
 
-  modifierCollegue(matricule: string) {
-
-    this.dataService.modifierCollegue(this.collegueAModifier, matricule).subscribe(() => {} , error => console.log(error));
-
-    this.creer = true;
-
-    this.modifier = true;
-
+  validerLEdition() {
+    this.modeEdition = false;
+    console.log('Validation du collègue');
   }
 
-  modiForm() {
-
-    this.modifier = false;
-
+  ngOnInit() {
   }
-
-  annuler() {
-
-    this.modifier = true;
-
-    this.creer = true;
-
-  }
-
-
 
 }

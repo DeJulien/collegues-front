@@ -1,27 +1,24 @@
+<div class="row">
 
-
-<div class="countainer px-3 py-5">
-
-  <div class="row">
-
-    <div class="col-4"><label for="nom">Recherche par nom</label></div>
-
-    <div class="col-5"><input type="nom" class="form-control" id="nom" #saisieNom></div>
-
-    <div class="col-3 mb-3"> <button type="button" (click)="rechercherCollegueParNom(saisieNom.value)"
-
-        class="btn btn-dark">Rechercher</button></div>
-
+  <div class="col">
+    Recherche par nom :
   </div>
 
-  <div class="row">
-
-    <div class="col-8"*ngIf="afficherMatricules">
-
-      <button  *ngFor="let mat of listeMatricules | async" class="btn btn-primary mb-3 "  (click)="recupererCollegue(mat)">{{mat}}</button>
-
-    </div>
-
+  <div class="col">
+    <input type="text" class="form-control" #saisieNom>
   </div>
 
+  <div class="col">
+    <button class="btn btn-primary" (click)="rechercherParNom(saisieNom.value)">Rechercher</button>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col">
+  <ul>
+    <li *ngFor="let matricule of listeMatricules | async">{{ matricule }}</li>
+  </ul>
+  </div>
 </div>
