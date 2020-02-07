@@ -14,6 +14,8 @@ import {tap} from 'rxjs/operators';
 
 
 
+
+
 const url = 'https://btoulemonde-collegues-api.herokuapp.com/collegues';
 
 
@@ -57,6 +59,22 @@ export class DataService {
     })
 
     );
+
+  }
+
+
+
+  creerCollegue(nouveauCollegue: Collegue): Observable<Collegue> {
+
+    return this.httpClient.post<Collegue>(url, nouveauCollegue);
+
+  }
+
+
+
+  modifierCollegue(collegueModif: Collegue, matricule: string): Observable<Collegue> {
+
+    return this.httpClient.patch<Collegue>(`${url}/${matricule}`, collegueModif);
 
   }
 

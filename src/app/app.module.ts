@@ -8,13 +8,17 @@ import { AppComponent } from './app.component';
 
 
 
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CollegueComponent } from './collegue/collegue.component';
 
 import { RechercheCollegueParNomComponent } from './recherche-collegue-par-nom/recherche-collegue-par-nom.component';
 
 import { HttpClientModule } from '@angular/common/http';
+
+import { FormsModule } from '@angular/forms';
+
+import { CreationCollegueComponent } from './creation-collegue/creation-collegue.component';
 
 
 
@@ -28,15 +32,17 @@ import { HttpClientModule } from '@angular/common/http';
 
     RechercheCollegueParNomComponent,
 
+    CreationCollegueComponent,
+
 
 
   ],
 
   imports: [
 
-    BrowserModule,
+    BrowserModule, NgbModule,
 
-    HttpClientModule
+    HttpClientModule, FormsModule
 
   ],
 

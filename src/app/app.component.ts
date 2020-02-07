@@ -7,6 +7,6 @@ import { collegueMock } from './mock/collegues.mock';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'bonjour-angular';
+  title = 'collegues-front';
   collegueFictif = collegueMock;
 }
